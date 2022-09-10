@@ -1,17 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css'],
+  host: {
+    '(document:click)': 'onClick($event)',
+  },
 })
 export class DatePickerComponent implements OnInit {
   @Input() day!: any;
   @Input() month!: any;
   @Input() year!: any;
 
-  constructor() {}
+  constructor(private _eref: ElementRef) {}
+
+  onClick(event: any) {
+    if (!this._eref.nativeElement.contains(event.target)) {
+      this.selectDay = false;
+      this.selectMonth = false;
+      this.selectYear = false;
+    }
+  }
+
   days: any[] = [];
   months: any[] = [];
   years: any[] = [];
@@ -37,7 +49,7 @@ export class DatePickerComponent implements OnInit {
       if (index < 12) this.months.push(index + 1);
       if (index < 31) this.days.push(index + 1);
     }
-    this.year=this.years.reverse()
+    this.year = this.years.reverse();
     this.LoadData();
   }
   LoadData() {
@@ -51,18 +63,18 @@ export class DatePickerComponent implements OnInit {
     switch (type) {
       case 0:
         this.selectDay = !this.selectDay;
-        this.selectMonth=false;
-        this.selectYear=false;
+        this.selectMonth = false;
+        this.selectYear = false;
         break;
       case 1:
         this.selectMonth = !this.selectMonth;
-        this.selectDay=false;
-        this.selectYear=false;
+        this.selectDay = false;
+        this.selectYear = false;
         break;
       case 2:
         this.selectYear = !this.selectYear;
-        this.selectMonth=false;
-        this.selectDay=false;
+        this.selectMonth = false;
+        this.selectDay = false;
         break;
       default:
         break;

@@ -4,7 +4,7 @@
 <div class="max-w-xs grid grid-cols-3 gap-2 ">
     <div>
         <div class="flex w-24 h-[45px] py-[10px] px-[12px] rounded-lg border {{selectDay?'border-blue-600':'border-gray-200'}}"
-            (click)="select(0)">
+            (click)="select(0)" >
             <div class="w-20 {{!selectDay?'text-blue-600':'text-black'}}">{{day}}</div>
             <div class="my-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-<div class="flex mt-2 items-center" *ngIf="!check()">
+<div class="flex mt-2 items-center" *ngIf="!check()&& !selectDay && !selectMonth && !selectYear">
     <img src="../../assets/invalid.svg" class="w-4 h-4 mb-1">
     <span class="ml-1 text-red-600">Vui lòng nhập lại</span>
 </div>
