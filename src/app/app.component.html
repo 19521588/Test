@@ -1,0 +1,118 @@
+<!-- <header class="bg-[#333] fixed w-full top-0 left-0 py-15px text-white text-lg">
+    <div class="max-w-4xl px-20px mx-auto flex">
+        <img src="../assets/logo.svg" alt="logo" class="w-25px h-25px mr-2 align-middle max-w-full" />
+        Sample HTML Project
+    </div>
+</header>
+
+<main class="pt-20 w-full ">
+    <div class=" min-h-screen items-center">
+        <div class=" max-w-5xl mx-auto p-10">
+            <form [formGroup]="form!" (ngSubmit)="onSave()">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label>
+                            <div class=" text-gray-800">
+                                Name*
+                            </div>
+                            <div class="font-bold text-lg mt-2" *ngIf="!isSave">
+                                {{saveName}}
+                            </div>
+                            <input class="w-full rounded min-w-0 py-3 px-5 text-lg mt-2" *ngIf="isSave"
+                                formControlName="name">
+                            <div class=" text-red-500" *ngIf="form?.get('name')?.invalid">
+                                Name is required.</div>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <div class=" text-gray-800">
+                                E-mail Address*
+                            </div>
+                            <div class="font-bold text-lg mt-2" *ngIf="!isSave">
+                                {{saveEmail}}
+                            </div>
+                            <input class="w-full rounded min-w-0 py-3 px-5 text-lg mt-2" *ngIf="isSave" type="email"
+                                [ngStyle]="form?.get('email')?.getError('email')?{color:'red'}:{color:'black'}"
+                                formControlName="email">
+                            <div class=" text-red-500" *ngIf=" form?.get('email')?.getError('required')">
+                                E-mail Address is required.</div>
+                            <div class=" text-red-500" *ngIf="form?.get('email')?.getError('email')">
+                                E-mail Address is invalid.</div>
+                        </label>
+
+                    </div>
+                    <div>
+                        <label>
+                            <div class=" text-gray-800">
+                                Contact Number*
+                            </div>
+                            <div class="font-bold text-lg mt-2" *ngIf="!isSave">
+                                {{savePhone}}
+                            </div>
+                            <input class="w-full rounded min-w-0 py-3 px-5 text-lg mt-2" *ngIf="isSave"
+                                formControlName="phone">
+                            <div class=" text-red-500" *ngIf=" form?.get('phone')?.getError('required')">
+                                Contact Number is required.</div>
+                            <div class=" text-red-500"
+                                *ngIf="form?.get('phone')?.getError('minlength')||form?.get('phone')?.getError('maxlength')||form?.get('phone')?.getError('pattern')">
+                                Contact Number should consist of 8 to 12 digits only.</div>
+                        </label>
+
+                    </div>
+                    <div>
+
+                        <label>
+                            <div class=" text-gray-800">
+                                Gender*
+                            </div>
+                            <div class="font-bold text-lg mt-2" *ngIf="!isSave">
+                                {{saveGender}}
+                            </div>
+                            <select class="form-select appearance-none w-full rounded min-w-0 py-4 px-5 text-lg mt-2" *ngIf="isSave"
+                                formControlName="gender"
+                                [ngStyle]="form?.get('gender')?.value==''?{color:'red'}:{color:'black'}">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let option of options" [ngValue]="option">{{option}}</option>
+
+                            </select>
+                            <div class=" text-red-500" *ngIf=" form?.get('gender')?.invalid">
+                                Gender is required.</div>
+                        </label>
+
+                    </div>
+
+                    <div class="w-full sm:col-start-1 sm:col-end-3">
+                        <label>
+                            <div class=" text-gray-800">
+                                Notes*
+                            </div>
+                            <div class="font-bold text-lg mt-2" *ngIf="!isSave">
+                                {{saveNotes}}
+                            </div>
+                            <textarea
+                                class="mt-2 text-lg min-w-full max-w-full h-6e min-h-6e max-h-12e rounded  py-3 px-5 "
+                                *ngIf="isSave" formControlName="notes"></textarea>
+
+                            <div class=" text-red-500"
+                                *ngIf="form?.get('notes')?.invalid ">
+                                Notes is required.</div>
+                        </label>
+
+                    </div>
+
+                    <div class="w-full text-white text-lg flex justify-center sm:col-start-1 sm:col-end-3">
+                        <button class="bg-[#333] px-4 py-3 align-middle rounded-md" *ngIf="isSave">
+                            Save
+                        </button>
+                        <button class="bg-[#09c] px-4 py-3 align-middle rounded-md" *ngIf="!isSave">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main> -->
+<app-date-picker></app-date-picker>
