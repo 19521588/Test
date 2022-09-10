@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Renderer2, ElementRef } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-date-picker',
@@ -112,7 +112,33 @@ export class DatePickerComponent implements OnInit {
     const regex = new RegExp(
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/g
     );
-    return regex.test(date);
+
+    if (!regex.test(date)) {
+      return false;
+    } else {
+      var today = new Date();
+      var inputDay = new Date(this.month + '/' + this.day + '/' + this.year);
+      var datePipe = new DatePipe('en-US');
+
+      if (inputDay.setHours(0, 0, 0, 0) > today.setHours(0, 0, 0, 0))
+        return false;
+      else return true;
+      // if (this.currentYear == this.year) {
+      //   if (this.currentMonth == this.month)
+      //     if (this.currentDay < this.day) return false;
+      //     else return true;
+      //   else {
+      //     if (this.currentMonth < this.month) return false;
+      //     else return true;
+      //   }
+      // } else {
+      //   if (this.currentYear < this.year) {
+      //     return false;
+      //   } else {
+      //     return true;
+      //   }
+      // }
+    }
   }
 
   check() {
@@ -120,7 +146,10 @@ export class DatePickerComponent implements OnInit {
     return this.validateDate(this.dateConvert());
   }
   isEmpty() {
-    if (this.day == 'dd' || this.month == 'mm' || this.year == 'yyyy') {
+    if (
+      (this.day == 'dd' && this.month == 'mm' && this.year == 'yyyy') ||
+      (!this.day && !this.month && this.year)
+    ) {
       return false;
     }
     return true;
