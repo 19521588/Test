@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
