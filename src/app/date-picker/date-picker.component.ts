@@ -1,5 +1,17 @@
+<<<<<<< Updated upstream
 import { Component, OnInit, Input, Renderer2, ElementRef } from '@angular/core';
 import { DatePipe, formatDate } from '@angular/common';
+=======
+import {
+  Component,
+  OnInit,
+  Input,
+  ElementRef,
+  HostListener,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-date-picker',
@@ -10,9 +22,12 @@ import { DatePipe, formatDate } from '@angular/common';
   },
 })
 export class DatePickerComponent implements OnInit {
-  @Input() day!: any;
-  @Input() month!: any;
-  @Input() year!: any;
+  @Output() getDataEvent = new EventEmitter<string>();
+  getDate(value: string) {
+    this.getDataEvent.emit(value);
+  }
+
+  @Input() date!: string;
 
   constructor(private _eref: ElementRef) {}
 
@@ -30,6 +45,10 @@ export class DatePickerComponent implements OnInit {
   currentYear = 0;
   currentMonth = 0;
   currentDay = 0;
+
+  day = 'dd';
+  month = 'mm';
+  year = 'yyyy';
 
   fromYear = 1900;
 
@@ -53,10 +72,18 @@ export class DatePickerComponent implements OnInit {
     this.LoadData();
   }
   LoadData() {
-    if (!this.day || !this.month || !this.year) {
-      this.day = 'dd';
-      this.month = 'mm';
-      this.year = 'yyyy';
+    if (this.date !== undefined) {
+      this.getDate(this.date);
+      const splittedDate = this.date.split('/');
+
+      if (splittedDate[0].substring(0, 1) === '0')
+        this.day = splittedDate[0].substring(1, 2);
+      else this.day = splittedDate[0];
+      if (splittedDate[1].substring(0, 1) === '0')
+        this.month = splittedDate[1].substring(1, 2);
+      else this.month = splittedDate[1];
+
+      this.year = splittedDate[2];
     }
   }
   select(type: any) {
@@ -98,12 +125,20 @@ export class DatePickerComponent implements OnInit {
       default:
         break;
     }
+    if (
+      this.check() &&
+      this.day != 'dd' &&
+      this.month != 'mm' &&
+      this.year != 'yyyy'
+    )
+      this.getDate(this.dateConvert());
+    else this.getDate('false');
   }
   dateConvert() {
     return (
-      (this.day < 10 ? '0' + this.day : this.day) +
+      (Number(this.day) < 10 ? '0' + this.day : this.day) +
       '/' +
-      (this.month < 10 ? '0' + this.month : this.month) +
+      (Number(this.month) < 10 ? '0' + this.month : this.month) +
       '/' +
       this.year
     );
