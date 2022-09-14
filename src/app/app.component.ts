@@ -13,6 +13,7 @@ import {
 })
 export class AppComponent implements OnInit {
   isSave = false;
+  data="";
   options: any = ['Male', 'FeMale', 'Others', 'I do not wish to say'];
   saveName = 'John Wick';
   saveEmail = 'donottake@mydog.com';
@@ -22,6 +23,13 @@ export class AppComponent implements OnInit {
   saveGender = 'Male';
   form?: FormGroup;
   constructor(private fb: FormBuilder) {}
+  
+  //get data from child 
+  show(data: string) {
+   this.data=data
+  }
+  
+
   ngOnInit(): void {
     this.form = this.fb.group({
       name: [this.saveName, Validators.required],
