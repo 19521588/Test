@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-import { Component, OnInit, Input, Renderer2, ElementRef } from '@angular/core';
-import { DatePipe, formatDate } from '@angular/common';
-=======
 import {
   Component,
   OnInit,
@@ -11,15 +7,11 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
 })
 export class DatePickerComponent implements OnInit {
   @Output() getDataEvent = new EventEmitter<string>();
@@ -29,8 +21,7 @@ export class DatePickerComponent implements OnInit {
 
   @Input() date!: string;
 
-  constructor(private _eref: ElementRef) {}
-
+  @HostListener('document:click', ['$event'])
   onClick(event: any) {
     if (!this._eref.nativeElement.contains(event.target)) {
       this.selectDay = false;
@@ -38,6 +29,7 @@ export class DatePickerComponent implements OnInit {
       this.selectYear = false;
     }
   }
+  constructor(private _eref: ElementRef) {}
 
   days: any[] = [];
   months: any[] = [];
@@ -68,12 +60,12 @@ export class DatePickerComponent implements OnInit {
       if (index < 12) this.months.push(index + 1);
       if (index < 31) this.days.push(index + 1);
     }
-    this.year = this.years.reverse();
+    this.years = this.years.reverse();
     this.LoadData();
   }
   LoadData() {
     if (this.date !== undefined) {
-      this.getDate(this.date);
+      this.getDate(this.date)
       const splittedDate = this.date.split('/');
 
       if (splittedDate[0].substring(0, 1) === '0')
@@ -151,28 +143,12 @@ export class DatePickerComponent implements OnInit {
     if (!regex.test(date)) {
       return false;
     } else {
-      var today = new Date();
-      var inputDay = new Date(this.month + '/' + this.day + '/' + this.year);
-      var datePipe = new DatePipe('en-US');
+      const today = new Date();
+      const inputDay = new Date(this.month + '/' + this.day + '/' + this.year);
 
       if (inputDay.setHours(0, 0, 0, 0) > today.setHours(0, 0, 0, 0))
         return false;
       else return true;
-      // if (this.currentYear == this.year) {
-      //   if (this.currentMonth == this.month)
-      //     if (this.currentDay < this.day) return false;
-      //     else return true;
-      //   else {
-      //     if (this.currentMonth < this.month) return false;
-      //     else return true;
-      //   }
-      // } else {
-      //   if (this.currentYear < this.year) {
-      //     return false;
-      //   } else {
-      //     return true;
-      //   }
-      // }
     }
   }
 
@@ -182,7 +158,7 @@ export class DatePickerComponent implements OnInit {
   }
   isEmpty() {
     if (
-      (this.day == 'dd' && this.month == 'mm' && this.year == 'yyyy') ||
+      (this.day === 'dd' && this.month === 'mm' && this.year === 'yyyy') ||
       (!this.day && !this.month && this.year)
     ) {
       return false;
