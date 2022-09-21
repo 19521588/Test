@@ -5,24 +5,12 @@
 @tailwind utilities;
 
 
-.primary-button-first{
-  @apply cursor-pointer bg-primaryblue flex items-center justify-center p-2  text-sm hover:opacity-50 font-normal tracking-wider  rounded-lg text-white  ;
+.primary-button{
+  @apply cursor-pointer bg-primaryblue flex items-center justify-center p-2 px-4 text-base font-semibold tracking-wide  rounded-lg text-white  ;
 }
 
-.primary-button-first-disable{
-  @apply cursor-pointer bg-primaryblue flex items-center justify-center p-2  text-sm opacity-50 font-normal tracking-wider  rounded-lg text-white  ;
-}
-
-.primary-button-second{
-  @apply cursor-pointer bg-primaryblue flex items-center justify-center py-2 px-4  text-base hover:opacity-50 font-semibold tracking-wide  rounded-lg text-white  ;
-}
-
-.primary-button-second-disable{
-  @apply cursor-pointer bg-primaryblue flex items-center justify-center py-2 px-4 text-base opacity-50 font-semibold tracking-wide  rounded-lg text-white  ;
-}
-
-.primary-button-third{
-  @apply cursor-pointer bg-primaryblue flex items-center justify-center py-2 px-4  text-[0.875rem] leading-6 hover:opacity-50 font-semibold tracking-normal  rounded-lg text-white  ;
+.primary-button-icon{
+  @apply cursor-pointer bg-primaryblue flex items-center justify-center p-2 stroke-white text-sm font-normal tracking-wide  rounded-lg text-white  ;
 }
 
 .secondary-button{
