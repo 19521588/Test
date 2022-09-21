@@ -64,8 +64,10 @@ export class DatePickerComponent implements OnInit {
     this.LoadData();
   }
   LoadData() {
-    if (this.date !== undefined) {
-      this.getDate(this.date)
+    this.getDate('dd/mm/yyyy');
+    if (!this.date) {
+    } else {
+      
       const splittedDate = this.date.split('/');
 
       if (splittedDate[0].substring(0, 1) === '0')
@@ -80,42 +82,42 @@ export class DatePickerComponent implements OnInit {
   }
   select(type: any) {
     switch (type) {
-    case 0:
-      this.selectDay = !this.selectDay;
-      this.selectMonth = false;
-      this.selectYear = false;
-      break;
-    case 1:
-      this.selectMonth = !this.selectMonth;
-      this.selectDay = false;
-      this.selectYear = false;
-      break;
-    case 2:
-      this.selectYear = !this.selectYear;
-      this.selectMonth = false;
-      this.selectDay = false;
-      break;
-    default:
-      break;
+      case 0:
+        this.selectDay = !this.selectDay;
+        this.selectMonth = false;
+        this.selectYear = false;
+        break;
+      case 1:
+        this.selectMonth = !this.selectMonth;
+        this.selectDay = false;
+        this.selectYear = false;
+        break;
+      case 2:
+        this.selectYear = !this.selectYear;
+        this.selectMonth = false;
+        this.selectDay = false;
+        break;
+      default:
+        break;
     }
   }
   changeValue(type: any, value: any) {
     switch (type) {
-    case 0:
-      this.day = value;
-      this.selectDay = !this.selectDay;
-      break;
-    case 1:
-      this.month = value;
-      this.selectMonth = !this.selectMonth;
-      break;
-    case 2:
-      this.year = value;
-      this.selectYear = !this.selectYear;
-      break;
+      case 0:
+        this.day = value;
+        this.selectDay = !this.selectDay;
+        break;
+      case 1:
+        this.month = value;
+        this.selectMonth = !this.selectMonth;
+        break;
+      case 2:
+        this.year = value;
+        this.selectYear = !this.selectYear;
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
     if (
       this.check() &&

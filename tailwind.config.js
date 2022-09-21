@@ -16,7 +16,11 @@ module.exports = {
        colors:{
       buttonYellow:'#FFB400',
       color_Blue:'#00477D',
-      textYellow:'#E6A100'
+      textYellow:'#E6A100',
+
+      primarygray:'#E2E7F1',
+      primaryblue:'#00477D'
+
     }
     },
    
